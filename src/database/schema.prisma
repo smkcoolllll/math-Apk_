@@ -1,0 +1,26 @@
+// prisma/schema.prisma
+
+// This is your Prisma schema file,
+// you can edit this file to define your database schema
+
+// Define your model
+model MathOperation {
+  id       Int      @id @default(autoincrement())
+  operation String
+  input1    Int
+  input2    Int?
+  result    String
+  createdAt DateTime @default(now())
+}
+
+// Set the connection URL for SQLite
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL") // You can set this in your .env file
+}
+
+// Use the SQLite database provider
+generator client {
+  provider = "prisma-client-js"
+  output   = "./src/generated/client"
+}
